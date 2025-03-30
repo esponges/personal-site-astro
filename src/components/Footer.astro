@@ -1,0 +1,68 @@
+---
+import Container from './Container.astro';
+
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { href: 'https://github.com/fertostado', icon: 'github', label: 'GitHub' },
+  { href: 'https://twitter.com/fertostado', icon: 'twitter', label: 'Twitter' },
+  { href: 'https://linkedin.com/in/fertostado', icon: 'linkedin', label: 'LinkedIn' },
+];
+---
+
+<footer class="flex w-full flex-col items-center bg-white/10 text-center text-white">
+  <Container class="my-0">
+    <div class="flex items-center p-6">
+      <div class="flex space-x-4">
+        {socialLinks.map(({ href, icon, label }) => (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white hover:text-white/80 transition-colors"
+            aria-label={label}
+          >
+            <span class="sr-only">{label}</span>
+            <i class={`fab fa-${icon} text-xl`}></i>
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mx-6 text-center md:py-2 md:text-left">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="mb-4 font-semibold uppercase">Fer Tostado Web Dev</h2>
+          <p class="text-white/90">
+            This is my personal website and I don't intend to make any money off of it.
+            I just want to share my passion for web development with the world.
+          </p>
+        </div>
+        <div class="text-right">
+          <h2 class="mb-4 font-semibold uppercase">Contact</h2>
+          <p class="mb-4">
+            <i class="fas fa-home mr-3"></i>
+            Guadalajara, Jalisco, MX
+          </p>
+          <p class="mb-4 break-all">
+            <i class="fas fa-envelope mr-3"></i>
+            fernandogtostado@gmail.com
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 text-center border-t border-white/10">
+      <span>© {currentYear} Copyright:</span>
+      <a href="/" class="ml-2 font-semibold hover:text-white/80 transition-colors">
+        Fer Tostado
+      </a>
+    </div>
+  </Container>
+</footer>
+
+<!-- Font Awesome -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+/> 

@@ -1,14 +1,20 @@
 ---
 interface Props {
   textCenter?: boolean;
+  class?: string;
 }
 
-const { textCenter = true } = Astro.props;
+const { textCenter = true, class: className } = Astro.props;
 ---
 
-<div class:list={[
-  "container mx-auto px-4 sm:px-6 lg:px-8",
-  { "text-center": textCenter }
-]}>
-  <slot />
-</div>
+<div class="mx-auto max-w-7xl my-6 md:my-4 px-4 sm:px-6 lg:px-8">
+  <div
+    class:list={[
+      "mx-auto max-w-3xl",
+      textCenter && "text-center",
+      className
+    ]}
+  >
+    <slot />
+  </div>
+</div> 

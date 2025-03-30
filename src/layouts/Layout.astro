@@ -1,31 +1,32 @@
 ---
-import Navigation from '../components/Navigation.astro';
-import Container from '../components/Container.astro';
 import '../styles/global.css';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
 
-// Layout props interface
 interface Props {
   title: string;
-  description: string;
+  description?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description = "Fernando Tostado's personal website" } = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="UTF-8" />
     <meta name="description" content={description} />
-    <title>{title}</title>
+    <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
   </head>
-  <body>
+  <body class="flex min-h-screen flex-col bg-blue-900 dark:bg-gray-800 font-color--primary">
     <Navigation />
-    <Container>
+    <main class="flex-grow">
       <slot />
-    </Container>
+    </main>
+    <Footer />
   </body>
 </html>
 
@@ -41,20 +42,4 @@ const { title, description } = Astro.props;
       white 60%
     );
   }
-  
-  html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
-    background-size: 224px;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-  }
-
-  code {
-    font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-      Bitstream Vera Sans Mono, Courier New, monospace;
-  }
-</style>
+</style> 
