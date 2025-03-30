@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --font-color-primary: theme('colors.white');
+}
+
+/* Custom base styles */
+body {
+  @apply antialiased;
+}
+
+/* Any additional custom styles that can't be handled by Tailwind */

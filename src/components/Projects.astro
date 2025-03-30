@@ -1,0 +1,63 @@
+---
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  tags: string[];
+}
+
+// We'll hardcode the projects for now, but this could be moved to a separate data file
+const projects: Project[] = [
+  {
+    title: "Personal Website",
+    description: "My personal website built with Astro, React, and Tailwind CSS. Features a blog, projects showcase, and a chatbot.",
+    image: "/images/projects/personal-site.png",
+    link: "https://github.com/fertostado/fer-personal-site",
+    tags: ["Astro", "React", "Tailwind CSS", "TypeScript"]
+  },
+  {
+    title: "Dev.to Integration",
+    description: "Integration with Dev.to API to fetch and display my blog posts. Built with TypeScript and Node.js.",
+    image: "/images/projects/devto.png",
+    link: "https://dev.to/fertostado",
+    tags: ["TypeScript", "Node.js", "API Integration"]
+  }
+];
+---
+
+<div class="grid grid-cols-1 gap-8 py-8 md:grid-cols-2 lg:grid-cols-3">
+  {
+    projects.map((project) => (
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          class="mb-4 rounded-lg object-cover w-full h-48"
+          loading="lazy"
+        />
+        <h2 class="mb-3 text-2xl font-semibold text-gray-100">
+          {project.title}
+          <span class="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
+            -&gt;
+          </span>
+        </h2>
+        <p class="m-0 max-w-[30ch] text-sm opacity-50">
+          {project.description}
+        </p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <span class="rounded-full bg-gray-700 px-3 py-1 text-sm text-gray-200">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    ))
+  }
+</div> 

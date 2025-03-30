@@ -1,0 +1,94 @@
+---
+const NAV_LINK_HOVER_CLASS = "hover:text-gray-300 transition-colors duration-200";
+
+const navItems = [
+  { href: '/', text: 'Home' },
+  { href: '/posts', text: 'Posts' },
+  { href: '/projects', text: 'Projects' },
+  { href: '/about', text: 'About' },
+];
+---
+
+<nav class="w-full bg-white/10">
+  <div class="mx-auto max-w-3xl justify-between px-4 py-3 md:flex">
+    <div class="flex items-center justify-between">
+      <a 
+        href="/" 
+        class={`text-3xl font-bold text-white md:text-4xl ${NAV_LINK_HOVER_CLASS}`}
+      >
+        FerTostado
+      </a>
+      
+      <!-- Mobile menu button -->
+      <button
+        type="button"
+        class="md:hidden"
+        id="mobile-menu-button"
+        aria-label="Toggle menu"
+      >
+        <svg
+          class="h-6 w-6 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex md:items-center md:space-x-6">
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`text-lg text-white md:text-xl lg:text-2xl ${NAV_LINK_HOVER_CLASS}`}
+        >
+          {item.text}
+          {item.text === 'About' && (
+            <span class="ml-2 inline-flex items-center rounded-md bg-yellow-500 px-2 py-1 text-xs text-gray-500">
+              🤖 AI
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      class="hidden flex-col space-y-4 md:hidden"
+      id="mobile-menu"
+    >
+      {navItems.map(item => (
+        <a
+          href={item.href}
+          class={`text-lg text-white ${NAV_LINK_HOVER_CLASS}`}
+        >
+          {item.text}
+          {item.text === 'About' && (
+            <span class="ml-2 inline-flex items-center rounded-md bg-yellow-500 px-2 py-1 text-xs text-gray-500">
+              🤖 AI
+            </span>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Client-side JavaScript for mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

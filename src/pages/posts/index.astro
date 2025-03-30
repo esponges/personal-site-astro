@@ -1,0 +1,19 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Container from '../../components/Container.astro';
+import Posts from '../../components/Posts.astro';
+
+const title = "Blog";
+const description = "I love to write about things I'm learning. Blogging is a great way to improve and share knowledge. And who knows, maybe one day it might help me to write a book!";
+---
+
+<Layout title={title} description={description}>
+  <Container>
+    <PageHeader
+      title={title}
+      description={description}
+    />
+    <Posts />
+  </Container>
+</Layout> 
