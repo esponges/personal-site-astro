@@ -1,21 +1,46 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
+import PageHeader from '../components/PageHeader.astro';
+import MeCard from '../components/MeCard.astro';
+import { Image } from 'astro:assets';
+import { Emojis } from '../types/enums';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<Layout>
-			<Container>
-				<h1>Astro</h1>
-			</Container>
-		</Layout>
-	</body>
-</html>
+<Layout title="Fernando Tostado - Software Engineer">
+	<div class="flex flex-col items-center justify-center">
+		<Container>
+			<PageHeader 
+				title={`Hello ${Emojis.hi}, I'm Fernando `}
+				description=""
+			/>
+			<!-- <Image
+				class="mx-auto rounded-xl border-2 border-4 border-gray-200"
+				src={meImage}
+				alt="Fernando Tostado"
+				width={200}
+				height={200}
+			/> -->
+			<div class="container flex flex-col items-center justify-center gap-12 py-16">
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
+					<MeCard
+						emoji={Emojis.me}
+						description={`I'm a software engineer from Guadalajara, Mexico. ${Emojis.mexico}. I've been coding since 2019.`}
+					/>
+					<MeCard
+						emoji={Emojis.code}
+						description="My current stack is React, Next.js, TypeScript, Node.js. With a sprinkle of Golang, and currently learning Python and how to implement LLMs into existing systems."
+					/>
+					<MeCard
+						emoji={Emojis.heart}
+						description={`My passion is to create software that helps people. I love to learn new things and share what I know. I also love reading ${Emojis.book} and sports ${Emojis.gym}.`}
+					/>
+					<MeCard
+						emoji={Emojis.love}
+						description={`I'm happily married to my wife Vicky ${Emojis.her}. I'm also a proud dog dad of two ${Emojis.dog}${Emojis.dog}.`}
+					/>
+				</div>
+			</div>
+		</Container>
+	</div>
+</Layout>
