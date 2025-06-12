@@ -1,15 +1,16 @@
 ---
 interface Props {
-  emoji: string;
-  description: string;
+	emoji: string;
+	description: string;
 }
 
 const { emoji, description } = Astro.props;
 ---
 
-<div class="flex flex-col gap-4 rounded-xl border border-gray-200 bg-white/10 p-4 hover:bg-white/20">
-  <div class="text-5xl">{emoji}</div>
-  <p class="text-lg leading-relaxed text-gray-300">
+<div class="group relative overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-gray-700/20">
+  <div class="mb-4 text-4xl">{emoji}</div>
+  <p class="text-gray-300 leading-relaxed">
     {description}
   </p>
-</div> 
+  <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-400/0 to-teal-400/0 opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+</div>

@@ -41,46 +41,57 @@ function formatDate(date: string) {
         href={post.url}
         target="_blank"
         rel="noopener noreferrer"
-        class="group flex flex-col rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+        class="group relative flex flex-col overflow-hidden rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 transition-all duration-300 hover:shadow-xl hover:shadow-gray-700/20"
       >
         {post.cover_image && (
-          <img
-            src={post.cover_image}
-            alt={post.title}
-            class="mb-4 rounded-lg object-cover w-full h-48"
-            loading="lazy"
-          />
+          <div class="relative overflow-hidden">
+            <div class="aspect-video overflow-hidden">
+              <img
+                src={post.cover_image}
+                alt={post.title}
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
+          </div>
         )}
-        <h2 class="mb-3 text-2xl font-semibold text-gray-100">
-          {post.title}
-          <span class="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-            -&gt;
-          </span>
-        </h2>
-        <p class="m-0 text-sm opacity-50 flex-grow">
-          {post.description}
-        </p>
-        <div class="mt-4 flex flex-wrap gap-2">
-          {post.tag_list.map((tag) => (
-            <span class="rounded-full bg-gray-700 px-3 py-1 text-sm text-gray-200">
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div class="mt-4 flex justify-between items-center text-sm opacity-50">
-          <span>{formatDate(post.published_at)}</span>
-          <span>{post.reading_time_minutes} min read</span>
+        <div class="flex flex-col flex-grow p-6">
+          <h2 class="mb-3 text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-400">
+            {post.title}
+          </h2>
+          <p class="mb-4 text-gray-300 text-sm line-clamp-3 flex-grow">
+            {post.description}
+          </p>
+          <div class="mt-auto">
+            <div class="flex flex-wrap gap-2 mb-4">
+              {post.tag_list.map((tag) => (
+                <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <div class="flex justify-between items-center text-sm text-gray-400 border-t border-gray-700/50 pt-4">
+              <span>{formatDate(post.published_at)}</span>
+              <span class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                {post.reading_time_minutes} min read
+              </span>
+            </div>
+          </div>
         </div>
       </a>
     ))
   }
   {
     posts.length === 0 && (
-      <div class="col-span-full text-center py-12">
-        <p class="text-lg text-gray-400">
+      <div class="col-span-full rounded-xl bg-gradient-to-br from-gray-900 to-gray-800 p-12 text-center">
+        <p class="text-lg text-gray-300">
           No posts found. Please check back later!
         </p>
       </div>
     )
   }
-</div> 
+</div>
